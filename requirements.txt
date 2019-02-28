@@ -1,0 +1,10 @@
+django==2.1.5
+gunicorn
+psycopg2-binary
+dj-static
+ipython
+ipdb
+simplejson
+structlog
+requests
+woocommerce
