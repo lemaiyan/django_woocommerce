@@ -8,6 +8,8 @@ services:
       - DB_HOST=db
       - DB_PORT=5432
       - DJANGO_SETTINGS_MODULE=configuration.settings.development
+      - WOO_CONSUMER_KEY=$WOO_CONSUMER_KEY
+      - WOO_CONSUMER_SECRET=$WOO_CONSUMER_SECRET
     build: .
     depends_on:
       - db

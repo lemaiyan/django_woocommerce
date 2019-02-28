@@ -129,3 +129,7 @@ STATIC_ROOT = os.path.abspath(os.path.join(PROJECT_DIR, 'static'))
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.abspath(os.path.join(PROJECT_DIR, 'media'))
 MEDIA_UPLOAD_FOLDER = '%Y_%m_%d/'
+
+WOO_CONSUMER_KEY = os.environ['WOO_CONSUMER_KEY']
+WOO_CONSUMER_SECRET = os.environ['WOO_CONSUMER_SECRET']
+WOO_API_URL = 'http://134.209.77.194'
