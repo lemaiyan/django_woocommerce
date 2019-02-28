@@ -54,3 +54,4 @@ class CustomerTests(TestCase):
         with HTTMock(response_mock):
             resp = woocommerce.delete_customer(25)
             self.assertDictEqual(resp, mocks.CUSTOMER_RESPONSE)
+
