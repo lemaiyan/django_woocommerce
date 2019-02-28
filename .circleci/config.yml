@@ -33,7 +33,7 @@ jobs:
           name: run app tests
           command: |
             . venv/bin/activate
-            coverage run manage.py test mpesa_api.tests --settings=configuration.settings.ci
+            coverage run manage.py test  --settings=configuration.settings.ci
             coverage report
             coverage xml
       - run:
