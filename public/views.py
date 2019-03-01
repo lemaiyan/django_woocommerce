@@ -10,6 +10,9 @@ class LoginPageView(TemplateView):
 class RegisterPageView(TemplateView):
     template_name = "register.html"
 
+class DashboardPageView(TemplateView):
+    template_name = "admin/dashboard.html"
+
 def dologin(request):
     email = request.POST['email']
     password = request.POST['password']
