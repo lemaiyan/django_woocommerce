@@ -19,7 +19,7 @@ def create_customer(data):
     return api.post('customers', data).json()
 
 def delete_customer(customer_id):
-    uri = 'customers/{}?force=true'.format(customer_id)
+    uri = "customers/{}?force=true".format(customer_id)
     return api.delete(uri).json()
 
 def get_customer(customer_id):

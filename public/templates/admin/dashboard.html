@@ -8,38 +8,53 @@
     <h1 class="h3 mb-2 text-gray-800">Customers</h1>
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <a href="" class="btn btn-primary"> <i class="fa fa-user-plus"></i> Add Customer</a>
+            <a href="{% url 'public:customer' %}" class="btn btn-primary"> <i class="fa fa-user-plus"></i> Add Customer</a>
         </div>
         <div class="card-body">
+            {% if messages %}
+                {% for message in messages %}
+                    <br/>
+                    <div class="alert {% if message.tags %} {{ message.tags }} {% endif %}  alert-dismissible"
+                         role="alert">
+                        <button type="button" class="close"
+                                data-dismiss="alert"
+                                aria-label="Close"><span
+                                aria-hidden="true">&times;</span>
+                        </button>
+                        {{ message }}
+                    </div>
+                {% endfor %}
+                <br/>
+            {% endif %}
             <div class="table-responsive">
                 <table class="table table-responsive, table-hover table-striped" id="dataTable">
-        <thead>
-        <tr>
-            <th>Username</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Is Paying Customer</th>
-            <th>Date Created</th>
-            <th>Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for rec in customers %}
-            <tr>
-                <td>{{ rec.username }}</td>
-                <td>{{ rec.email }}</td>
-                <td>{{ rec.first_name }}  {{ rec.last_name }}</td>
-                <td>{{ rec.is_paying_customer }} </td>
-                <td>{{ rec.date_created }}</td>
-                <td>
-                    <a href="#" class="fa fa-edit"></a>
-                    <a href="#" class="fa fa-trash "></a>
-                </td>
-            </tr>
-        {% endfor%}
-        </tbody>
+                    <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Is Paying Customer</th>
+                        <th>Date Created</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for rec in customers %}
+                        <tr>
+                            <td>{{ rec.username }}</td>
+                            <td>{{ rec.email }}</td>
+                            <td>{{ rec.first_name }} {{ rec.last_name }}</td>
+                            <td>{{ rec.is_paying_customer }} </td>
+                            <td>{{ rec.date_created }}</td>
+                            <td>
+                                <a href="{% url 'public:edit_customer' %}?id={{ rec.id }}" class="fa fa-edit"></a>
+                                <a href="{% url 'public:delete' %}?id={{ rec.id }}" class="fa fa-trash "></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
 
-    </table>
+                </table>
             </div>
         </div>
     </div>
