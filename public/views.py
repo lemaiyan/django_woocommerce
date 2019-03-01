@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from shop import woocommerce
 
 class LoginPageView(TemplateView):
     template_name = "login.html"
@@ -12,6 +13,11 @@ class RegisterPageView(TemplateView):
 
 class DashboardPageView(TemplateView):
     template_name = "admin/dashboard.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(DashboardPageView, self).get_context_data(**kwargs)
+        context['customers'] = woocommerce.get_all_customers()
+        return context
 
 def dologin(request):
     email = request.POST['email']
