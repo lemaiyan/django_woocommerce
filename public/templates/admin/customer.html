@@ -1,0 +1,177 @@
+{% extends 'admin/base.html' %}
+{% load static from staticfiles %}
+
+{% block content %}
+    <h1 class="h3 mb-2 text-gray-800"></h1>
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h3>Customer Details</h3>
+        </div>
+        <div class="card-body">
+                {% if messages %}
+                    {% for message in messages %}
+                        <br/>
+                        <div class="alert {% if message.tags %} {{ message.tags }} {% endif %}  alert-dismissible"
+                             role="alert">
+                            <button type="button" class="close"
+                                    data-dismiss="alert"
+                                    aria-label="Close"><span
+                                    aria-hidden="true">&times;</span>
+                            </button>
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                    <br/>
+                {% endif %}
+                <form class="user" method="post" action="{% url 'public:save_customer' %}">
+                    {% csrf_token %}
+                    <fieldset>
+                        <legend>Personal Info:</legend>
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <input type="text" class="form-control form-control-user" name="username"
+                                       placeholder="Username" value="{{ customer.username }}">
+                                <input type="hidden" value="{{ customer.id }}" name="id">
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="email" class="form-control form-control-user" name="email"
+                                       placeholder="Email" value="{{ customer.email }}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <input type="text" class="form-control form-control-user" name="first_name"
+                                       placeholder="First Name" value="{{ customer.first_name }}">
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control form-control-user" name="last_name"
+                                       placeholder="Last Name" value="{{ customer.last_name }}">
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Billing Info:</legend>
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <input type="text" class="form-control form-control-user" name="billing_first_name"
+                                       placeholder="First Name" value="{{ customer.billing.first_name }}">
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control form-control-user" name="billing_last_name"
+                                       placeholder="Last Name" value="{{ customer.billing.last_name }}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <input type="text" class="form-control form-control-user" name="billing_company"
+                                       placeholder="Company" value="{{ customer.billing.company }}">
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control form-control-user" name="billing_address_1"
+                                       placeholder="Address 1" value="{{ customer.billing.address_1 }}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <input type="text" class="form-control form-control-user" name="billing_address_2"
+                                       placeholder="Address 2" value="{{ customer.billing.address_2 }}">
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control form-control-user" name="billing_city"
+                                       placeholder="City" value="{{ customer.billing.city }}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <input type="text" class="form-control form-control-user" name="billing_state"
+                                       placeholder="State" value="{{ customer.billing.state}}">
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control form-control-user" name="billing_postcode"
+                                       placeholder="Postcode" value="{{ customer.billing.postcode }}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <input type="text" class="form-control form-control-user" name="billing_country"
+                                       placeholder="Country" value="{{ customer.billing.country}}">
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="email" class="form-control form-control-user" name="billing_email"
+                                       placeholder="Email" value="{{ customer.billing.email }}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <input type="text" class="form-control form-control-user" name="billing_phone"
+                                       placeholder="Phone" value="{{ customer.billing.phone}}">
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Shipping Info:</legend>
+                         <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <input type="text" class="form-control form-control-user" name="shipping_first_name"
+                                       placeholder="First Name" value="{{ customer.shipping.first_name }}">
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control form-control-user" name="shipping_last_name"
+                                       placeholder="Last Name" value="{{ customer.shipping.last_name }}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <input type="text" class="form-control form-control-user" name="shipping_company"
+                                       placeholder="Company" value="{{ customer.shipping.company }}">
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control form-control-user" name="shipping_address_1"
+                                       placeholder="Address 1" value="{{ customer.shipping.address_1 }}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <input type="text" class="form-control form-control-user" name="shipping_address_2"
+                                       placeholder="Address 2" value="{{ customer.shipping.address_2 }}">
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control form-control-user" name="shipping_city"
+                                       placeholder="City" value="{{ customer.shipping.city }}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <input type="text" class="form-control form-control-user" name="shipping_state"
+                                       placeholder="State" value="{{ customer.shipping.state}}">
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control form-control-user" name="shipping_postcode"
+                                       placeholder="Postcode" value="{{ customer.shipping.postcode }}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <input type="text" class="form-control form-control-user" name="shipping_country"
+                                       placeholder="Country" value="{{ customer.shipping.country}}">
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="email" class="form-control form-control-user" name="shipping_email"
+                                       placeholder="Email" value="{{ customer.shipping.email }}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <input type="text" class="form-control form-control-user" name="shipping_phone"
+                                       placeholder="Phone" value="{{ customer.shipping.phone}}">
+                            </div>
+                        </div>
+                    </fieldset>
+                    <button class="btn btn-primary btn-user">
+                               Save
+                    </button>
+                </form>
+            </div>
+    </div>
+{% endblock %}

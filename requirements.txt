@@ -1,4 +1,4 @@
-django==2.1.6
+django==2.1.7
 gunicorn
 psycopg2-binary
 dj-static
@@ -8,3 +8,5 @@ simplejson
 structlog
 requests
 woocommerce
+httmock
+coverage
