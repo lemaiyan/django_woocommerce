@@ -1,3 +1,5 @@
+[![codecov](https://codecov.io/gh/lemaiyan/django_woocommerce/branch/master/graph/badge.svg)](https://codecov.io/gh/lemaiyan/django_woocommerce)
+[![CircleCI](https://circleci.com/gh/lemaiyan/django_woocommerce.svg?style=svg)](https://circleci.com/gh/lemaiyan/django_woocommerce)
 ## WooCommerce Django Integration
 This small example tries to show how to consume WooCommerce rest API, by setting up customers
 
@@ -19,3 +21,4 @@ This small example tries to show how to consume WooCommerce rest API, by setting
 ### Known Issues
 - The delete functionality keeps returning the error `'true? is not of type boolean.'`
 this means the delete functionality is not working as expected.
+- The test coverage needs to be improved
