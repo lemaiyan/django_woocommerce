@@ -161,7 +161,7 @@ class Register(View):
                 return redirect('public:register')
 
 class Logout(View):
-    def post(self, request, *args, **kwargs):
+    def get(self, request, *args, **kwargs):
         logout(request)
         return redirect('public:login')
 
