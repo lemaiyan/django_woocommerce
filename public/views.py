@@ -101,11 +101,10 @@ class SaveCustomer(BaseView):
         customer_dict['billing'] = billing
         customer_dict['shipping'] = shipping
 
-        response = None
         if customer_id:
             response = woocommerce.update_customer(customer_id, customer_dict)
             if response.get('data', {}).get('status', []) == 400:
-                message = response.get('data', {}).get('params', 'An error occurred updating')
+                message = response.get('data', {}).get('params', 'An error occurred updating user')
                 messages.error(request, message)
             else:
                 messages.success(request, "Customer successfully updated")
@@ -113,7 +112,7 @@ class SaveCustomer(BaseView):
         else:
             response = woocommerce.create_customer(customer_dict)
             if response.get('data', {}).get('status', []) == 400:
-                message = response.get('data', {}).get('params', 'An error occurred updating')
+                message = response.get('data', {}).get('params', 'An error occurred Creating user')
                 messages.error(request, message)
             else:
                 messages.success(request, "Customer successfully created")
